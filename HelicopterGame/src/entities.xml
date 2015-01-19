@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+	<entity id="PLAYER">
+		<states>
+			<state id="DIRECTION" />
+			<state id="SPEED" horizontal="4" vertical="4" />
+		</states>
+
+		<availableActions>
+			<availableAction id="BOUNDED_MOVE" />
+		</availableActions>
+
+		<enabledActions></enabledActions>
+
+		<form id="HELICOPTER" width="70" height="83">
+			<spaces>
+			</spaces>
+		</form>
+	</entity>
+
+	<entity id="FIRE">
+		<states>
+			<state id="DIRECTION" vertical ="-1" />
+			<state id="SPEED" vertical="8" />
+		</states>
+
+		<availableActions>
+			<availableAction id="FIRE_MOVE" />
+		</availableActions>
+
+		<enabledActions>
+			<enabledAction id="FIRE_MOVE" />
+		</enabledActions>
+
+		<form id="FIRE" width="3" height="3">
+			<spaces></spaces>
+		</form>
+	</entity>
+
+	<entity id="BOX">
+		<states></states>
+
+		<availableActions></availableActions>
+
+		<enabledActions></enabledActions>
+
+		<form id="BOX" width="20" height="20">
+			<spaces></spaces>
+		</form>
+	</entity>
+</entities>

@@ -1,0 +1,68 @@
+package it.ice.phg.forms;
+
+import it.ice.phg.PHGController;
+import it.ice.scrooge.Form;
+import it.ice.scrooge.FormEvent;
+import it.ice.scrooge.FormEvents;
+
+import java.io.IOException;
+
+import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.game.Sprite;
+
+public class SpriteForm extends Form {
+	protected Sprite avatar;
+
+	public SpriteForm(String imagePath, int frameWidth, int frameHeight)
+			throws IOException {
+		super();
+		Image image = Image.createImage(imagePath);
+		avatar = new Sprite(image, frameWidth, frameHeight);
+		avatar.defineReferencePixel(frameWidth / 2, frameHeight / 2);
+	}
+
+	public Object getAvatar() {
+		return avatar;
+	}
+
+	public int getHeight() {
+		return avatar.getHeight();
+	}
+
+	public int getWidth() {
+		return avatar.getWidth();
+	}
+
+	public int getX() {
+		return avatar.getRefPixelX();
+	}
+
+	public int getY() {
+		return avatar.getRefPixelY();
+	}
+
+	public void move(int dx, int dy) {
+		avatar.move(dx, dy);
+	}
+
+	public void place(int x, int y) {
+		avatar.setRefPixelPosition(x, y);
+	}
+
+	public void activate() {
+		avatar.setFrame(0);
+		PHGController.getInstance().append(avatar);
+	}
+
+	public void update() {
+		avatar.nextFrame();
+		if (avatar.getFrame() <= 0
+				|| avatar.getFrame() >= avatar.getFrameSequenceLength() - 1) {
+			notifyEvent(new FormEvent(FormEvents.ANIMATION_END));
+		}
+	}
+
+	public void dispose() {
+		PHGController.getInstance().remove(avatar);
+	}
+}
